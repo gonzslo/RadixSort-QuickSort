@@ -1,10 +1,15 @@
 #include <bits/stdc++.h>
+#include <random>
 using namespace std;
+typedef unsigned long long ulonglong;
 
-int partition(int arr[],int low,int high) {
+int partition(ulonglong arr[],int low,int high) {
     //choose the pivot
-
-    int pivot=arr[high];
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distr(0, sizeof(arr)-1);
+    int num = distr(gen);
+    int pivot = arr[num];
     //Index of smaller element and Indicate
     //the right position of pivot found so far
     int i=(low-1);
@@ -22,13 +27,12 @@ int partition(int arr[],int low,int high) {
 }
 
 // The Quicksort function Implement
-			
-void quickSort(int arr[],int low,int high) {
+void quickSort(ulonglong arr[],ulonglong low,ulonglong high) {
     // when low is less than high
     if(low<high) {
         // pi is the partition return index of pivot
         
-        int pi=partition(arr,low,high);
+        ulonglong pi=partition(arr,low,high);
         
         //Recursion Call
         //smaller element than pivot goes left and
@@ -38,10 +42,9 @@ void quickSort(int arr[],int low,int high) {
     }
 }
 			
-
 int main() {
-    int arr[]={10,7,8,9,1,5};
-    int n=sizeof(arr)/sizeof(arr[0]);
+    ulonglong arr[]={10,7,8,9,1,5};
+    ulonglong n=sizeof(arr)/sizeof(arr[0]);
     // Function call
     quickSort(arr,0,n-1);
     //Print the sorted array

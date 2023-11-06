@@ -3,14 +3,15 @@
 #include <iostream>
 #include "Algorithms.hpp"
 using namespace std;
+typedef unsigned long long ulonglong;
 
 // The main function to that sorts arr[]
 // of size n using Radix Sort
-void radixsort(int arr[], int n) {
+void radixsort(ulonglong arr[], int n) {
 
 	// Find the maximum number to
 	// know number of digits
-	int m = getMax(arr, n);
+	ulonglong m = getMax(arr, n);
 
 	// Do counting sort for every digit.
 	// Note that instead of passing digit
@@ -21,15 +22,15 @@ void radixsort(int arr[], int n) {
 }
 
 // A utility function to print an array
-void print(int arr[], int n) {
+void print(ulonglong arr[], int n) {
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
 }
 
 // Driver Code
 int main() {
-	int arr[] = { 543, 986, 217, 765, 329 };
-	int n = sizeof(arr) / sizeof(arr[0]);
+	ulonglong arr[] = { 543, 986, 217, 765, 329 };
+	ulonglong n = sizeof(arr) / sizeof(arr[0]);
 
 	// Function Call
 	radixsort(arr, n);
