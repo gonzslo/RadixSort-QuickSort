@@ -3,6 +3,7 @@
 #include <algorithm>
 using namespace std;
 typedef unsigned long long ulonglong;
+#define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
 
 
 // A utility function to get maximum
@@ -100,7 +101,7 @@ ulonglong partition(ulonglong arr[],int low,int high) {
     //choose the pivot
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<ulonglong> distr(0, sizeof(arr)-1);
+    uniform_int_distribution<ulonglong> distr(0, SIZE-1);
     ulonglong num = distr(gen);
     ulonglong pivot = arr[num];
     //Index of smaller element and Indicate
