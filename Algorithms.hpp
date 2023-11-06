@@ -97,40 +97,75 @@ void print(ulonglong arr[], int n) {
 		cout << arr[i] << " ";
 }
 
-ulonglong partition(ulonglong arr[],int low,int high) {
-    //choose the pivot
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<ulonglong> distr(0, SIZE-1);
-    ulonglong num = distr(gen);
-    ulonglong pivot = arr[num];
-    //Index of smaller element and Indicate
-    //the right position of pivot found so far
-    ulonglong i=(low-1);
+// C++ implementation QuickSort 
+// using Lomuto's partition Scheme.
+#include <cstdlib>
+#include <time.h>
+#include <iostream>
+using namespace std;
 
-    for(ulonglong j=low;j<=high;j++) {
-        //If current element is smaller than the pivot
-        if(arr[j]<pivot) {
-            //Increment index of smaller element
-            i++;
-            swap(arr[i],arr[j]);
-        }
-    }
-    swap(arr[i+1],arr[high]);
-    return (i+1);
+// This function takes last element
+// as pivot, places
+// the pivot element at its correct
+// position in sorted array, and 
+// places all smaller (smaller than pivot)
+// to left of pivot and all greater 
+// elements to right of pivot
+int partition(int arr[], int low, int high)
+{
+	// pivot
+	int pivot = arr[high]; 
+
+	// Index of smaller element
+	int i = (low - 1); 
+
+	for (int j = low; j <= high - 1; j++) 
+	{
+		// If current element is smaller
+		// than or equal to pivot
+		if (arr[j] <= pivot) {
+
+			// increment index of 
+			// smaller element
+			i++; 
+			swap(arr[i], arr[j]);
+		}
+	}
+	swap(arr[i + 1], arr[high]);
+	return (i + 1);
 }
 
-// The Quicksort function Implement
-void quickSort(ulonglong arr[],int low,int high) {
-    // when low is less than high
-    if(low<high) {
-        // pi is the partition return index of pivot
-        ulonglong pi=partition(arr,low,high);
-        
-        //Recursion Call
-        //smaller element than pivot goes left and
-        //higher element goes right
-        quickSort(arr,low,pi-1);
-        quickSort(arr,pi+1,high);
-    }
+// Generates Random Pivot, swaps pivot with
+// end element and calls the partition function
+ulonglong partition(ulonglong arr[], int low, int high) {
+	// Generate a random number in between
+	// low .. high
+	srand(time(NULL));
+	int random = low + rand() % (high - low);
+
+	// Swap A[random] with A[high]
+	swap(arr[random], arr[high]);
+
+	return partition(arr, low, high);
+}
+
+/* The main function that implements
+QuickSort
+arr[] --> Array to be sorted,
+low --> Starting index,
+high --> Ending index */
+void quickSort(ulonglong arr[], int low, int high)
+{
+	if (low < high) {
+
+		/* pi is partitioning index,
+		arr[p] is now
+		at right place */
+		int pi = partition(arr, low, high);
+
+		// Separately sort elements before
+		// partition and after partition
+		quickSort(arr, low, pi - 1);
+		quickSort(arr, pi + 1, high);
+	}
 }

@@ -26,9 +26,7 @@ int main() {
                 arr2[k] = num;
             }
             // imprimir arreglos desordenados
-            cout << "arreglo 1 desordenado: " << endl;
-            print(arr1, SIZE);
-            cout << "arreglo 2 desordenado: " << endl;
+            cout << "arreglo desordenado: " << endl;
             print(arr2,SIZE);
             // medir tiempo de ejecución de cada algoritmo
             auto startRadix = std::chrono::high_resolution_clock::now();
