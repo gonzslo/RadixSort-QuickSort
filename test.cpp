@@ -2,6 +2,7 @@
 #include <cmath>
 #include <random>
 #include "Algorithms.hpp"
+#include "QuickSort.hpp"
 
 #define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
 
@@ -34,20 +35,20 @@ int main() {
             auto endRadix = std::chrono::high_resolution_clock::now();
 
             auto startQuick = std::chrono::high_resolution_clock::now();
-            quickSort(arr2, arr2[0], arr2[SIZE-1]);
+            quickSort(arr2, 0, SIZE-1);
             auto endQuick = std::chrono::high_resolution_clock::now();
 
             auto tiempofinalRadix = chrono::duration_cast<chrono::milliseconds>(endRadix - startRadix).count();
             auto tiempofinalQuick = chrono::duration_cast<chrono::milliseconds>(endQuick - startQuick).count();
 
             // imprime arreglos ordenados
-            cout << "arreglo 1 ordenado: " << endl;
+            cout << "\narreglo ordenado con radix sort: " << endl;
             print(arr1, SIZE);
-            cout << "tiempo arreglo 1: " << tiempofinalRadix << endl;
+            cout << "\ntiempo radix sort: " << tiempofinalRadix << endl;
 
-            cout << "arreglo 2 ordenado: " << endl;
+            cout << "\narreglo ordenado con quick sort: " << endl;
             print(arr2,SIZE);
-            cout << "tiempo arreglo 2: " << tiempofinalQuick << endl;
+            cout << "\ntiempo quick sort: " << tiempofinalQuick << endl;
 
             // eliminar arreglos
             delete[] arr1;
