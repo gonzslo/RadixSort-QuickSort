@@ -34,7 +34,7 @@ int main() {
             print(arr1, SIZE);
             // medir tiempo de ejecución de cada algoritmo
             auto startRadix = std::chrono::high_resolution_clock::now();
-            radixsort(arr1, SIZE);
+            radixSort(arr1, SIZE);
             auto endRadix = std::chrono::high_resolution_clock::now();
 
             auto startQuick = std::chrono::high_resolution_clock::now();
