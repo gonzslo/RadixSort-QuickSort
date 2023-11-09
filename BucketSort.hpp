@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "CountingSort.hpp"
 using namespace std;
 typedef unsigned long long ulonglong;
 #define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
 
+/*
 void BucketSort(ulonglong A[], ulonglong u) { // u es el tamaño del universo
     // paso 1: calcular arreglo C de contadores
     int C[u] = {0};
@@ -24,5 +26,33 @@ void BucketSort(ulonglong A[], ulonglong u) { // u es el tamaño del universo
     for(ulonglong i = 0; i < SIZE; i++) {
         B[C[A[i] - 1]] = A[i];
         C[A[i]-1]++;
+    }
+}
+*/
+
+// Implementación de bucket sort
+void bucketSort(unsigned long long arr[], int n) {
+    const int maximo = 1000000;  // Ajusta este valor según tus necesidades
+
+    // Crear un vector de cubetas
+    vector<vector<unsigned long long>> cubetas(maximo);
+
+    // Distribuir los elementos en las cubetas
+    for (int i = 0; i < n; i++) {
+        int indiceCubeta = arr[i] / maximo;
+        cubetas[indiceCubeta].push_back(arr[i]);
+    }
+
+    // Ordenar cada cubeta individualmente (puedes usar cualquier algoritmo de ordenamiento)
+    for (int i = 0; i < maximo; i++) {
+        sort(cubetas[i].begin(), cubetas[i].end());
+    }
+
+    // Recolectar los elementos de las cubetas de nuevo en el arreglo principal
+    int indiceArr = 0;
+    for (int i = 0; i < maximo; i++) {
+        for (unsigned long long num : cubetas[i]) {
+            arr[indiceArr++] = num;
+        }
     }
 }

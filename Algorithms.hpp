@@ -15,6 +15,7 @@ ulonglong getMax(ulonglong arr[], int n) {
 			mx = arr[i];
 	return mx;
 }
+// creo que no hay que usar esto porque el maximo será el tamaño de u en el ciclo correspondiente
 
 // A function to do counting sort of arr[]
 // according to the digit
