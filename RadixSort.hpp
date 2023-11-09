@@ -1,46 +1,61 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cmath>
-#include "BucketSort.hpp"
-using namespace std;
 typedef unsigned long long ulonglong;
-#define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
+using namespace std;
 
-void RadixSort(ulonglong arr[], ulonglong u) {
-    // realiza una serie de rondas de bucket sort sobre los datos
-    // ordena progresivamente de los bits menos significativos a los más significativos
-    
-    // ordenamos de a k=ceil(log2(u)) bits
-    int k = ceil(log2(u));
+// A utility function to get maximum
+// value in arr[]
+ulonglong getMax(ulonglong arr[], ulonglong n) {
+	ulonglong mx = arr[0];
+	for (ulonglong i = 1; i < n; i++)
+		if (arr[i] > mx)
+			mx = arr[i];
+	return mx;
+}
 
-    for (int i = 0; i < k; i++) {
-        // Ordena los elementos en función del i-ésimo bit menos significativo
-        ulonglong mask = 1ULL << i;
-        ulonglong bucket[2][SIZE]; // Usamos 2 buckets para alternar entre ellos
-        
-        for (int j = 0; j < SIZE; j++) {
-            int bucketIndex = (arr[j] & mask) ? 1 : 0;
-            bucket[bucketIndex][j] = arr[j];
-        }
-        
-        // Aplica BucketSort en los dos buckets
-        BucketSort(bucket[0], u);
-        BucketSort(bucket[1], u);
-        
-        // Combina los elementos ordenados de los buckets
-        int index = 0;
-        for (int j = 0; j < SIZE; j++) {
-            if (bucket[0][j] != 0) {
-                arr[index] = bucket[0][j];
-                index++;
-            }
-        }
-        for (int j = 0; j < SIZE; j++) {
-            if (bucket[1][j] != 0) {
-                arr[index] = bucket[1][j];
-                index++;
-            }
-        }
-    }
+// A function to do counting sort of arr[]
+// according to the digit
+// represented by exp.
+void countSort(ulonglong arr[], ulonglong n, ulonglong exp) {
+
+	// Output array
+	ulonglong output[n];
+	ulonglong i, count[10] = { 0 };
+
+	// Store count of occurrences
+	// in count[]
+	for (i = 0; i < n; i++)
+		count[(arr[i] / exp) % 10]++;
+
+	// Change count[i] so that count[i]
+	// now contains actual position
+	// of this digit in output[]
+	for (i = 1; i < 10; i++)
+		count[i] += count[i - 1];
+
+	// Build the output array
+	for (i = n - 1; i >= 0; i--) {
+		output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+		count[(arr[i] / exp) % 10]--;
+	}
+
+	// Copy the output array to arr[],
+	// so that arr[] now contains sorted
+	// numbers according to current digit
+	for (i = 0; i < n; i++)
+		arr[i] = output[i];
+}
+
+// The main function to that sorts arr[]
+// of size n using Radix Sort
+void radixSort(ulonglong arr[], ulonglong n) {
+	// Find the maximum number to
+	// know number of digits
+	ulonglong m = getMax(arr, n);
+
+	// Do counting sort for every digit.
+	// Note that instead of passing digit
+	// number, exp is passed. exp is 10^i
+	// where i is current digit number
+	for (ulonglong exp = 1; m / exp > 0; exp *= 10)
+		countSort(arr, n, exp);
 }

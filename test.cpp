@@ -4,7 +4,7 @@
 #include "RadixSort.hpp"
 #include "QuickSort.hpp"
 
-#define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
+#define SIZE (ulonglong) 10 // tamaño fijo de los arreglos: 100 millones
 
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);
@@ -34,11 +34,11 @@ int main() {
             print(arr1, SIZE);
             // medir tiempo de ejecución de cada algoritmo
             auto startRadix = std::chrono::high_resolution_clock::now();
-            RadixSort(arr1, u);
+            radixsort(arr1, SIZE);
             auto endRadix = std::chrono::high_resolution_clock::now();
 
             auto startQuick = std::chrono::high_resolution_clock::now();
-            quickSort(arr2, 0, SIZE-1);
+            quickSort(arr2, 0, SIZE);
             auto endQuick = std::chrono::high_resolution_clock::now();
 
             auto tiempofinalRadix = chrono::duration_cast<chrono::milliseconds>(endRadix - startRadix).count();
@@ -49,9 +49,9 @@ int main() {
             print(arr1, SIZE);
             cout << "\ntiempo radix sort: " << tiempofinalRadix << endl;
 
-            cout << "\narreglo ordenado con quick sort: " << endl;
+            cout << "arreglo ordenado con quick sort: " << endl;
             print(arr2,SIZE);
-            cout << "\ntiempo quick sort: " << tiempofinalQuick << endl;
+            cout << "\ntiempo quick sort: " << tiempofinalQuick << "\n" << endl;
 
             // eliminar arreglos
             delete[] arr1;
