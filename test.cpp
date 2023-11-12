@@ -1,7 +1,7 @@
 #include <chrono>
 #include <cmath>
 #include <random>
-#include "Algorithms.hpp"
+#include "RadixSort.hpp"
 #include "QuickSort.hpp"
 
 #define SIZE (ulonglong) 10 // tamaño fijo de los arreglos: 100 millones
@@ -9,8 +9,13 @@
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);
 ulonglong u = power(2,64);
+//int k = (int)ceil(log2(u));
+//int *bucket[(ceil(log2(u)))];
 
 int main() {
+    //Crea el archivo para guardar los resultados
+    ar
+
     // crear arreglos de forma aleatoria con números en [1,u]
     // donde u pertenece a [2,2^2,2^3,...,2^64]
     for(int i=1; i<=10; i++) {
@@ -34,7 +39,7 @@ int main() {
             print(arr1, SIZE);
             // medir tiempo de ejecución de cada algoritmo
             auto startRadix = std::chrono::high_resolution_clock::now();
-            radixsort(arr1, SIZE);
+            radixSort(arr1, SIZE, 4);
             auto endRadix = std::chrono::high_resolution_clock::now();
 
             auto startQuick = std::chrono::high_resolution_clock::now();
