@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 
-#define SIZE (ulonglong) 100000 // tamaño fijo de los arreglos: 100 millones
+#define SIZE (ulonglong) 500000 // tamaño fijo de los arreglos: 100 millones
 
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);
@@ -23,7 +23,7 @@ int main() {
 
 
         // realizar al menos 100 repeticiones por cada tamaño de universo
-        for(int j=0; j<10; j++) {
+        for(int j=0; j<2; j++) {
             //crea un arreglo tamaño SIZE 
             ulonglong *arr1 = new ulonglong[SIZE];
             ulonglong *arr2 = new ulonglong[SIZE];
