@@ -18,19 +18,24 @@ typedef unsigned long long ulonglong;
 // places all smaller (smaller than pivot)
 // to left of pivot and all greater 
 // elements to right of pivot
-ulonglong partition(ulonglong arr[], int low, int high) {
+ulonglong partition(ulonglong arr[], ulonglong low, ulonglong high) {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<ulonglong> distr(low, high);
+    
+    ulonglong num = distr(gen);
+    swap(arr[num], arr[high]);
     ulonglong pivot = arr[high];
-
 
     int i = (low - 1);
 
     for (int j = low; j <= high - 1; j++) {
         if (arr[j] <= pivot) {
             i++;
-            std::swap(arr[i], arr[j]);
+            swap(arr[i], arr[j]);
         }
     }
-    std::swap(arr[i + 1], arr[high]);
+    swap(arr[i + 1], arr[high]);
     return (i + 1);
 }
 
