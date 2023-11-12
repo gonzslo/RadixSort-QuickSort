@@ -51,11 +51,11 @@ void countingSort(ulonglong arr[], int n, int exp) {
 }
 
 
-// Function to sort arr[] of
-// size n using bucket sort
 struct Bucket {
     std::vector<ulonglong> values;
 };
+// Function to sort arr[] of
+// size n using bucket sort
 void bucketSort(ulonglong arr[], int n) {
     if (n <= 0) {
         return;

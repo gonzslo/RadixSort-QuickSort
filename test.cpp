@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 
-#define SIZE (ulonglong) 1000000 // tamaño fijo de los arreglos: 100 millones
+#define SIZE (ulonglong) 10000 // tamaño fijo de los arreglos: 100 millones
 
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);
@@ -37,6 +37,7 @@ int main() {
                 arr1[k] = num;
                 arr2[k] = num;
             }
+            cout << "arreglo "<< j <<"creado valores entre 0 y 2^" << i << endl;
             // imprimir arreglos desordenados
             //cout << "arreglo desordenado: " << endl;
             //print(arr1, SIZE);
@@ -52,16 +53,16 @@ int main() {
             auto tiempofinalRadix = chrono::duration_cast<chrono::milliseconds>(endRadix - startRadix).count();
             auto tiempofinalQuick = chrono::duration_cast<chrono::milliseconds>(endQuick - startQuick).count();
 
-/*
-            // imprime arreglos ordenados
-            cout << "\narreglo ordenado con radix sort: " << endl;
-            print(arr1, SIZE);
-            cout << "\ntiempo radix sort: " << tiempofinalRadix << endl;
 
-            cout << "arreglo ordenado con quick sort: " << endl;
-            print(arr2,SIZE);
-            cout << "\ntiempo quick sort: " << tiempofinalQuick << "\n" << endl;
-            */
+            // // imprime arreglos ordenados
+            // cout << "\narreglo ordenado con radix sort: " << endl;
+            // print(arr1, SIZE);
+            // cout << "\ntiempo radix sort: " << tiempofinalRadix << endl;
+
+            // cout << "arreglo ordenado con quick sort: " << endl;
+            // print(arr2,SIZE);
+            // cout << "\ntiempo quick sort: " << tiempofinalQuick << "\n" << endl;
+            
 
             // eliminar arreglos
             delete[] arr1;

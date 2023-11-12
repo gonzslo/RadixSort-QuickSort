@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <iostream>
+#include <random>
 
 
 using namespace std;
@@ -43,14 +44,10 @@ ulonglong partition(ulonglong arr[], int low, int high) {
 ulonglong partition_r(ulonglong arr[], int low, int high) {
 	// Generate a random number in between
 	// low .. high
-	srand(time(NULL));
-
-	std::mt19937_64 rng; // Mersenne Twister 64-bit generator
-    rng.seed(std::time(0)); // Seed with current time
-    std::uniform_int_distribution<unsigned long long> dist; // Distribution for unsigned long long
-    unsigned long long some_variable = dist(rng); 
-
-	int random = low + dist(rng) % (high - low);
+	random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<ulonglong> distr(low, high);
+	ulonglong random = distr(gen);
 
 	// Swap A[random] with A[high]
 	swap(arr[random], arr[high]);
