@@ -6,13 +6,11 @@
 #include <iostream>
 #include <fstream>
 
-#define SIZE (ulonglong) 10 // tamaño fijo de los arreglos: 100 millones
+#define SIZE (ulonglong) 1000000 // tamaño fijo de los arreglos: 100 millones
 
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);
 ulonglong u = power(2,64);
-//int k = (int)ceil(log2(u));
-//int *bucket[(ceil(log2(u)))];
 
 int main() {
     // crear arreglos de forma aleatoria con números en [1,u]
@@ -51,8 +49,8 @@ int main() {
             quickSort(arr2, 0, SIZE);
             auto endQuick = std::chrono::high_resolution_clock::now();
 
-            auto tiempofinalRadix = chrono::duration_cast<chrono::nanoseconds>(endRadix - startRadix).count();
-            auto tiempofinalQuick = chrono::duration_cast<chrono::nanoseconds>(endQuick - startQuick).count();
+            auto tiempofinalRadix = chrono::duration_cast<chrono::milliseconds>(endRadix - startRadix).count();
+            auto tiempofinalQuick = chrono::duration_cast<chrono::milliseconds>(endQuick - startQuick).count();
 
 /*
             // imprime arreglos ordenados

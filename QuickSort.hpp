@@ -44,7 +44,12 @@ ulonglong partition_r(ulonglong arr[], int low, int high) {
 	// Generate a random number in between
 	// low .. high
 	srand(time(NULL));
-	int random = low + rand() % (high - low);
+
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<ulonglong> distr(low, high);
+
+	int random = low + distr(gen) % (high - low);
 
 	// Swap A[random] with A[high]
 	swap(arr[random], arr[high]);
