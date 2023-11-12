@@ -21,7 +21,26 @@ int main() {
         archivo.open("universo"+to_string(i)+".txt");
         archivo << "Tiempo Radixsort,Tiempo Quicksort" << endl;
         //Definit k a utilizar
-        int k = numDigits(i);
+        int k=1;
+        if (i >= 4 && i <= 6) k=2;
+        if (i >= 7 && i <= 9) k=3;
+        if (i >= 10 && i <= 13) k=4;
+        if (i >= 14 && i <= 16) k=5;
+        if (i >= 17 && i <= 19) k=6;
+        if (i >= 20 && i <= 23) k=7;
+        if (i >= 24 && i <= 26) k=8;
+        if (i >= 27 && i <= 29) k=9;
+        if (i >= 30 && i <= 33) k=10;
+        if (i >= 34 && i <= 36) k=11;
+        if (i >= 37 && i <= 39) k=12;
+        if (i >= 40 && i <= 43) k=13;
+        if (i >= 44 && i <= 46) k=14;
+        if (i >= 47 && i <= 49) k=15;
+        if (i >= 50 && i <= 53) k=16;
+        if (i >= 54 && i <= 56) k=17;
+        if (i >= 57 && i <= 59) k=18;
+        if (i >= 60 && i <= 63) k=19;
+        if (i >= 64) k=20;
         // realizar al menos 100 repeticiones por cada tamaño de universo
         for(int j=0; j<2; j++) {
             //crea un arreglo tamaño SIZE 
