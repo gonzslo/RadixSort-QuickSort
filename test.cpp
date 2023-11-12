@@ -3,6 +3,8 @@
 #include <random>
 #include "RadixSort.hpp"
 #include "QuickSort.hpp"
+#include <iostream>
+#include <fstream>
 
 #define SIZE (ulonglong) 10 // tamaño fijo de los arreglos: 100 millones
 
@@ -13,14 +15,17 @@ ulonglong u = power(2,64);
 //int *bucket[(ceil(log2(u)))];
 
 int main() {
-    //Crea el archivo para guardar los resultados
-    ar
-
     // crear arreglos de forma aleatoria con números en [1,u]
     // donde u pertenece a [2,2^2,2^3,...,2^64]
-    for(int i=1; i<=10; i++) {
+    for(int i=1; i<=64; i++) {
+        //Crea un archivo por cada tamaño de universo
+        ofstream archivo;
+        archivo.open("universo"+to_string(i)+".txt");
+        archivo << "Tiempo Radixsort,Tiempo Quicksort" << endl;
+
+
         // realizar al menos 100 repeticiones por cada tamaño de universo
-        for(int j=0; j<2; j++) {
+        for(int j=0; j<100; j++) {
             //crea un arreglo tamaño SIZE 
             ulonglong *arr1 = new ulonglong[SIZE];
             ulonglong *arr2 = new ulonglong[SIZE];
@@ -35,8 +40,8 @@ int main() {
                 arr2[k] = num;
             }
             // imprimir arreglos desordenados
-            cout << "arreglo desordenado: " << endl;
-            print(arr1, SIZE);
+            //cout << "arreglo desordenado: " << endl;
+            //print(arr1, SIZE);
             // medir tiempo de ejecución de cada algoritmo
             auto startRadix = std::chrono::high_resolution_clock::now();
             radixSort(arr1, SIZE, 4);
@@ -46,9 +51,10 @@ int main() {
             quickSort(arr2, 0, SIZE);
             auto endQuick = std::chrono::high_resolution_clock::now();
 
-            auto tiempofinalRadix = chrono::duration_cast<chrono::milliseconds>(endRadix - startRadix).count();
-            auto tiempofinalQuick = chrono::duration_cast<chrono::milliseconds>(endQuick - startQuick).count();
+            auto tiempofinalRadix = chrono::duration_cast<chrono::nanoseconds>(endRadix - startRadix).count();
+            auto tiempofinalQuick = chrono::duration_cast<chrono::nanoseconds>(endQuick - startQuick).count();
 
+/*
             // imprime arreglos ordenados
             cout << "\narreglo ordenado con radix sort: " << endl;
             print(arr1, SIZE);
@@ -57,13 +63,17 @@ int main() {
             cout << "arreglo ordenado con quick sort: " << endl;
             print(arr2,SIZE);
             cout << "\ntiempo quick sort: " << tiempofinalQuick << "\n" << endl;
+            */
 
             // eliminar arreglos
             delete[] arr1;
             delete[] arr2;
-            
+
             // guardar resultados en un archivo de texto
+            archivo << tiempofinalRadix << "," << tiempofinalQuick << endl;
+
         }
+        archivo.close();
     }
     return 0;
 }
