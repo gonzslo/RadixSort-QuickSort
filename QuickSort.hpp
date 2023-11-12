@@ -5,6 +5,7 @@
 #include <iostream>
 #include <random>
 #include <stack>
+#include <utility>
 
 
 using namespace std;
@@ -18,7 +19,17 @@ typedef unsigned long long ulonglong;
 // to left of pivot and all greater 
 // elements to right of pivot
 ulonglong partition(ulonglong arr[], int low, int high) {
-    ulonglong pivot = arr[high];
+    //ulonglong pivot = arr[high];
+
+    //Se usa un pivote aleatorio
+    ulonglong pivot;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<ulonglong> distr(0, high);
+    ulonglong random = distr(gen);
+    pivot = arr[random];
+
+
     int i = (low - 1);
 
     for (int j = low; j <= high - 1; j++) {
