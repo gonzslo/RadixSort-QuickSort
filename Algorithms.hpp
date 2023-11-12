@@ -3,8 +3,6 @@
 #include <algorithm>
 using namespace std;
 typedef unsigned long long ulonglong;
-#define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
-
 
 // A utility function to get maximum
 // value in arr[]
@@ -92,8 +90,4 @@ void radixsort(ulonglong arr[], int n) {
 	for (int exp = 1; m / exp > 0; exp *= 10)
 		countingSort(arr, n, exp);
 }
-// A utility function to print an array
-void print(ulonglong arr[], int n) {
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << " ";
-}
+

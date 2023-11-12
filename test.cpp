@@ -1,7 +1,7 @@
 #include <chrono>
 #include <cmath>
 #include <random>
-#include "RadixSort.hpp"
+#include "Algorithms.hpp"
 #include "QuickSort.hpp"
 
 #define SIZE (ulonglong) 10 // tamaño fijo de los arreglos: 100 millones
@@ -34,7 +34,7 @@ int main() {
             print(arr1, SIZE);
             // medir tiempo de ejecución de cada algoritmo
             auto startRadix = std::chrono::high_resolution_clock::now();
-            radixSort(arr1, SIZE);
+            radixsort(arr1, SIZE);
             auto endRadix = std::chrono::high_resolution_clock::now();
 
             auto startQuick = std::chrono::high_resolution_clock::now();

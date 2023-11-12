@@ -4,7 +4,6 @@
 #include <time.h>
 #include <iostream>
 
-#define SIZE (ulonglong)10 // tamaño fijo de los arreglos: 100 millones
 
 using namespace std;
 typedef unsigned long long ulonglong;
