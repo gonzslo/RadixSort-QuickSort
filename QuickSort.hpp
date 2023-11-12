@@ -45,11 +45,12 @@ ulonglong partition_r(ulonglong arr[], int low, int high) {
 	// low .. high
 	srand(time(NULL));
 
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<ulonglong> distr(low, high);
+	std::mt19937_64 rng; // Mersenne Twister 64-bit generator
+    rng.seed(std::time(0)); // Seed with current time
+    std::uniform_int_distribution<unsigned long long> dist; // Distribution for unsigned long long
+    unsigned long long some_variable = dist(rng); 
 
-	int random = low + distr(gen) % (high - low);
+	int random = low + dist(rng) % (high - low);
 
 	// Swap A[random] with A[high]
 	swap(arr[random], arr[high]);
