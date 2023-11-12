@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 
-#define SIZE (ulonglong) 10000 // tamaño fijo de los arreglos: 100 millones
+#define SIZE (ulonglong) 100000 // tamaño fijo de los arreglos: 100 millones
 
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);
@@ -23,7 +23,7 @@ int main() {
 
 
         // realizar al menos 100 repeticiones por cada tamaño de universo
-        for(int j=0; j<100; j++) {
+        for(int j=0; j<10; j++) {
             //crea un arreglo tamaño SIZE 
             ulonglong *arr1 = new ulonglong[SIZE];
             ulonglong *arr2 = new ulonglong[SIZE];
@@ -31,13 +31,13 @@ int main() {
             for(int k=0; k<SIZE; k++){
                 random_device rd;
                 mt19937 gen(rd());
-                uniform_int_distribution<ulonglong> distr(0, pow(2,i));
+                uniform_int_distribution<ulonglong> distr(0, power(2,i));
                 
                 ulonglong num = distr(gen);
                 arr1[k] = num;
                 arr2[k] = num;
             }
-            cout << "arreglo "<< j <<"creado valores entre 0 y 2^" << i << endl;
+            cout << "arreglo "<< j <<" creado valores entre 0 y 2^" << i << endl;
             // imprimir arreglos desordenados
             //cout << "arreglo desordenado: " << endl;
             //print(arr1, SIZE);

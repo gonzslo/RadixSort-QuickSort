@@ -4,6 +4,7 @@
 #include <time.h>
 #include <iostream>
 #include <random>
+#include <stack>
 
 
 using namespace std;
@@ -17,61 +18,39 @@ typedef unsigned long long ulonglong;
 // to left of pivot and all greater 
 // elements to right of pivot
 ulonglong partition(ulonglong arr[], int low, int high) {
-	// pivot
-	ulonglong pivot = arr[high]; 
+    ulonglong pivot = arr[high];
+    int i = (low - 1);
 
-	// Index of smaller element
-	int i = (low - 1); 
-
-	for (int j = low; j <= high - 1; j++) 
-	{
-		// If current element is smaller
-		// than or equal to pivot
-		if (arr[j] <= pivot) {
-
-			// increment index of 
-			// smaller element
-			i++; 
-			swap(arr[i], arr[j]);
-		}
-	}
-	swap(arr[i + 1], arr[high]);
-	return (i + 1);
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    std::swap(arr[i + 1], arr[high]);
+    return (i + 1);
 }
 
-// Generates Random Pivot, swaps pivot with
-// end element and calls the partition function
-ulonglong partition_r(ulonglong arr[], int low, int high) {
-	// Generate a random number in between
-	// low .. high
-	random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<ulonglong> distr(low, high);
-	ulonglong random = distr(gen);
-
-	// Swap A[random] with A[high]
-	swap(arr[random], arr[high]);
-
-	return partition(arr, low, high);
-}
-
-/* The main function that implements
-QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
 void quickSort(ulonglong arr[], int low, int high) {
-	if (low < high) {
+    #include <stack>
+    std::stack<std::pair<int, int>> myStack;
+    myStack.push(std::make_pair(low, high));
 
-		/* pi is partitioning index,
-		arr[p] is now
-		at right place */
-		int pi = partition_r(arr, low, high);
 
-		// Separately sort elements before
-		// partition and after partition
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-	}
+    while (!myStack.empty()) {
+        low = myStack.top().first;
+        high = myStack.top().second;
+        myStack.pop();
+
+        if (low < high) {
+            int pi = partition(arr, low, high);
+
+            if (pi - 1 > low) {
+                myStack.push(std::make_pair(low, pi - 1));
+            }
+            if (pi + 1 < high) {
+                myStack.push(std::make_pair(pi + 1, high));
+            }
+        }
+    }
 }
-
