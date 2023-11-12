@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 
-#define SIZE (ulonglong) 500000 // tamaño fijo de los arreglos: 100 millones
+#define SIZE (ulonglong) 1000000 // tamaño fijo de los arreglos: 100 millones
 
 void print(ulonglong arr[], int n);
 ulonglong power(ulonglong base, ulonglong exponent);

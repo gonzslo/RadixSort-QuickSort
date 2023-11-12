@@ -1,3 +1,3 @@
 Tiempo Radixsort,Tiempo Quicksort
-131,87
-132,88
+245,188
+247,180
