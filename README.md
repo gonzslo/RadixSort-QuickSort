@@ -12,6 +12,7 @@
 ### Requerimientos
 * C++
 * Compilador
+
 En caso de no tener esto, seguir los pasos de [esta página](https://code.visualstudio.com/docs/cpp/config-mingw).
 
 ### Archivos importantes
